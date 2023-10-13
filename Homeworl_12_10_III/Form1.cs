@@ -46,17 +46,24 @@ namespace Homeworl_12_10_III
         private const int GlassesLensDistance = 70;  // Расстояние между линзами
         private const int GlassesLensHeightOffset = 0;  // Смещение линз по высоте относительно центра тела
 
-        private const float Line1StartX = 50;   // Начальная X-координата для первой линии
-        private const float Line1StartY = 50;   // Начальная Y-координата для первой линии
-        private const float Line1EndX = 200;    // Конечная X-координата для первой линии
-        private const float Line1EndY = 100;    // Конечная Y-координата для первой линии
+        private const float Line1StartX = 256;   // Начальная X-координата для первой линии
+        private const float Line1StartY = 276;   // Начальная Y-координата для первой линии
+        private const float Line1EndX = 233;    // Конечная X-координата для первой линии
+        private const float Line1EndY = 248;    // Конечная Y-координата для первой линии
 
-        private const float Line2StartX = 100;  // Начальная X-координата для второй линии
-        private const float Line2StartY = 150;  // Начальная Y-координата для второй линии
-        private const float Line2EndX = 250;    // Конечная X-координата для второй линии
-        private const float Line2EndY = 100;    // Конечная Y-координата для второй линии
+        private const float Line2StartX = 367;  // Начальная X-координата для второй линии
+        private const float Line2StartY = 275;  // Начальная Y-координата для второй линии
+        private const float Line2EndX = 449;    // Конечная X-координата для второй линии
+        private const float Line2EndY = 247;    // Конечная Y-координата для второй линии
 
-        private const int LineThickness = 3;    // Толщина линии
+        private const int LineThickness = 5;    // Толщина линии
+
+        private const float Line3StartX = 275;   // Начальная X-координата для линии рта
+        private const float Line3StartY = 373;   // Начальная Y-координата для  линии рта
+        private const float Line3EndX = 350;    // Конечная X-координата для  линии рта
+        private const float Line3EndY = 373;    // Конечная Y-координата для  линии рта
+
+        private const int LineThickness1 = 3;    // Толщина линии рта
 
         public Form1()
         {
@@ -150,12 +157,28 @@ namespace Homeworl_12_10_III
             g.DrawEllipse(glassesPen, rightLensX - GlassesLensRadius, rightLensY - GlassesLensRadius, GlassesLensRadius * 2, GlassesLensRadius * 2);
 
             Pen linePen = new Pen(Color.Black, LineThickness);
+            Pen linePen2 = new Pen(Color.Black, LineThickness1);
 
             // Рисуем первую линию
             g.DrawLine(linePen, Line1StartX, Line1StartY, Line1EndX, Line1EndY);
 
             // Рисуем вторую линию
             g.DrawLine(linePen, Line2StartX, Line2StartY, Line2EndX, Line2EndY);
+
+            // Рисуем рот
+            g.DrawLine(linePen2, Line3StartX, Line3StartY, Line3EndX, Line3EndY);
+        }
+
+        private void Form1_MouseClick(object sender, MouseEventArgs e)
+        {
+            Point point = PointToClient(MousePosition);
+            int x = point.X;
+            int y = point.Y;
+
+
+            label1.Text = x.ToString();
+            label2.Text = y.ToString();
+
         }
     }
 }
